@@ -1,5 +1,6 @@
 body {
     display: flex;
+    justify-content: center;
 }
 
 .calculator-body {
@@ -50,7 +51,8 @@ body {
 }
 
 .number,
-.operator {
+.operator,
+.operator-always {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -63,7 +65,8 @@ body {
     border-radius: 8px;
 }
 
-.operator {
+.operator,
+.operator-always {
     background-color: orange;
 }
 
