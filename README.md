@@ -1,1 +1,2 @@
 # calc
+Basic calculator application
