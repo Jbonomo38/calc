@@ -6,7 +6,7 @@ body {
 .calculator-body {
     display: flex;
     flex-flow: row wrap;
-    width: 500px;
+    width: 400px;
     height: 500px;
     border: 3px solid black;
     border-radius: 12px;

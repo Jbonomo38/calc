@@ -11,8 +11,7 @@ document.querySelectorAll('.number').forEach((num) => num.addEventListener('clic
 
 // function for eventListener
 function typeNumber(num) {
-    console.log(consoleBox.textContent);
-    if(consoleBox.textContent === '0') consoleBox.textContent = num.textContent;
+    if(consoleBox.textContent === '0' || consoleBox.textContent === 'ERROR') consoleBox.textContent = num.textContent;
     else if(consoleBox.textContent === firstValue) consoleBox.textContent = num.textContent;
     else consoleBox.textContent += num.textContent;
 }
@@ -23,38 +22,35 @@ document.querySelectorAll('.operator').forEach((operator) => operator.addEventLi
 // function for eventListener
 function typeOperator(operator) {
     if(operator.id === 'divide') {
-        // console.log("divide");
         currentOperator = "/";
-        // console.log(currentOperator);
         firstValue = consoleBox.textContent;
     }
     if(operator.id === 'multiply') {
-        // console.log("multiply");
         currentOperator = "*";
-        // console.log(currentOperator);
         firstValue = consoleBox.textContent;
     }
     if(operator.id === 'subtract') {
-        // console.log("subtract");
         currentOperator = "-";
-        // console.log(currentOperator);
         firstValue = consoleBox.textContent;
     }
     if(operator.id === 'add') {
-        // console.log("add");
         currentOperator = "+";
-        // console.log(currentOperator);
         firstValue = consoleBox.textContent;
     }
+    if(consoleBox.textContent === 'ERROR') firstValue = 0;
     if(operator.id === 'equals') {
-        // console.log("equals");
         secondValue = consoleBox.textContent;
         result = calculate(firstValue, secondValue, currentOperator);
-        console.log(`firstValue: ${firstValue}, secondValue: ${secondValue}, currentOperator: ${currentOperator}`);
-        console.log(result);
-        consoleBox.textContent = result;
-        clearLets();
-        firstValue = result;
+        if(result.toString() === 'Infinity') {
+            consoleBox.textContent = 'ERROR';
+            clearLets();
+            firstValue = 0;
+        } else {
+            consoleBox.textContent = result;
+            clearLets();
+            firstValue = result;
+        }
+        
     }
 }
 
@@ -75,18 +71,15 @@ document.querySelectorAll('.operator-always').forEach((operator) => operator.add
 
 function operatorAlways(operator) {
     if(operator.textContent === 'AC' ) {
-        console.log('AC');
         consoleBox.textContent = 0;
         clearLets();
     }
 
     if(operator.textContent === '+/-' ) {
-        console.log('+/-');
         consoleBox.textContent = consoleBox.textContent * -1;
     }
 
     if(operator.textContent === '%' ) {
-        console.log('%');
         consoleBox.textContent = consoleBox.textContent / 100;
     }
 }
